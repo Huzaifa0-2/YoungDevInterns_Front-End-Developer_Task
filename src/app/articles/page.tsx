@@ -1,19 +1,16 @@
 import React from 'react'
 import Link from 'next/link'
 
-const home = () => {
+const articles = () => {
   return (
     <div>
         <h1>Welcome to My SPA!</h1>
-        <Link href="/about">
-            About
+        <Link href="/">
+            Home
         </Link>
     </div>
   )
 }
 
-export default home
-
-
-  
+export default articles 
   
