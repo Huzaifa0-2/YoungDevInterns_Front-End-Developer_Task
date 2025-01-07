@@ -8,8 +8,8 @@ const Navbar = () => {
         <Link href={"/"}>
             <li className="font-semibold hover:text-gray-400 cursor-pointer">Home</li>
         </Link>
-        <Link href={"/articles"}>
-            <li className="font-semibold hover:text-gray-400 cursor-pointer">Articles</li>
+        <Link href={"/api/post"}>
+            <li className="font-semibold hover:text-gray-400 cursor-pointer">Posts</li>
         </Link>
         <Link href={"/about"}>
             <li className="font-semibold hover:text-gray-400 cursor-pointer">About</li>

@@ -5,6 +5,12 @@ import Navbar from '@/components/navbar';
 import Head from 'next/head';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
+
+
+// dynamic() is a function that allows you to import components asynchronously. and load them only when they are needed.
+// ssr: false means it only loads on client side.
+const LazyComponent = dynamic(() => import('@/components/LazyComponent'), { ssr: false });
 
 export default function Home() {
   const [count, setCount] = useState(0);
@@ -14,12 +20,22 @@ export default function Home() {
     <main>
       <Head>
         <title>NextJs Blog</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="preload" href="/favicon.ico" />
       </Head>      
       <div className="space-y-6 font-mono">
         <div className='flex flex-col items-center'>
           <h1 className="text-7xl font-bold font-serif ml-">Next <span className='bg-orange-600 rounded text-black'>Js</span></h1>
-          <Image className='rounded-3xl mt-8 mb-4' src="/homeimg.avif" alt="" width={237} height={158}/>
+        
+          <LazyComponent />
+        
+          {/* <Image
+        className="rounded-lg"
+        src="/homeimg.avif"
+        alt="Code Image"
+        width={237}
+        height={158}
+        priority={false} // Enables lazy loading by default
+      /> */}
           <p>A Blog by Huzaifa for Coders</p>
         </div>
       </div> 
