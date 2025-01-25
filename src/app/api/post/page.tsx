@@ -1,4 +1,29 @@
-// 'use client';
+export default async function PostsPage() {
+    const res = await fetch('https://jsonplaceholder.typicode.com/posts', {
+      next: { revalidate: 10 }, // Revalidate every 10 seconds for ISR
+    });
+    const posts = await res.json();
+  
+    return (
+      <div className="space-y-4">
+        <h1 className="text-3xl font-bold">Using JSONPlaceholder - Posts For 3rd Party API</h1>
+        <ul className="space-y-2">
+          {posts.slice(0, 10).map((post: any) => (
+            <li key={post.id} className="p-4 border rounded">
+              <h2 className="text-xl font-semibold">{post.title}</h2>
+              <a href={`/post/${post.id}`} className="text-blue-500 underline">
+                Read More
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
+  
+
+
+  // 'use client';
 
 // import { useEffect, useState } from 'react';
 // import axios from 'axios';
@@ -39,27 +64,3 @@
 //   );
 // }
 
-
-export default async function PostsPage() {
-    const res = await fetch('https://jsonplaceholder.typicode.com/posts', {
-      next: { revalidate: 10 }, // Revalidate every 10 seconds for ISR
-    });
-    const posts = await res.json();
-  
-    return (
-      <div className="space-y-4">
-        <h1 className="text-3xl font-bold">Using For 3rd Party API - JSONPlaceholder - Posts </h1>
-        <ul className="space-y-2">
-          {posts.slice(0, 10).map((post: any) => (
-            <li key={post.id} className="p-4 border rounded">
-              <h2 className="text-xl font-semibold">{post.title}</h2>
-              <a href={`/post/${post.id}`} className="text-blue-500 underline">
-                Read More
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-    );
-  }
-  
